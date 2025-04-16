@@ -78,4 +78,5 @@ If given more time and resources, we would:
 
 ## 📸 Schematic
 
-> _Insert photos or GIFs of your working system here_
+![THe Schematic of the Alarm System](images/DrawnSchematic4180.png)
+
