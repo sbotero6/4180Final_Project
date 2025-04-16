@@ -1,6 +1,6 @@
 # SnZ Home Security System
 
-The **SnZ Home Security System** is a two-factor authentication-based embedded system designed to secure a home using both button input and analog verification. The system features real-time status updates, an automatic door mechanism, and a live people counter — all coordinated through the Mbed LPC1768 microcontroller.
+The **SnZ Home Security System** is a two-factor authentication-based alarm system designed to enhance home security using embedded systems. The system combines button-based input and a potentiometer reading to verify identity. If a user fails to input the correct passcode three times in a row, an “Intruder!!” message is displayed on the uLCD, a buzzer sounds, and red LEDs flash. When the correct sequence is entered, a servo motor automatically opens and closes the door. Inside, an ultrasonic sensor detects when someone exits, updating a live occupancy counter shown on a TextLCD display.
 
 ---
 
@@ -42,14 +42,11 @@ The **SnZ Home Security System** is a two-factor authentication-based embedded s
 
 ## ⚠️ Challenges Faced
 
-Power management and input signal stability were major issues:
+One of the biggest challenges we faced was power stability and signal interference. At various stages, the uLCD would display numbers without any buttons being pressed, and button inputs wouldn’t register properly. These issues stemmed from voltage fluctuations caused by high-draw components like the servo.
 
-- **Floating Inputs**: Initially caused the uLCD to display numbers without button presses.
-- **Button Issues**: Inputs sometimes failed due to weak or missing pull-down resistors.
-- **Voltage Drops**: Shared power between components like the servo and sensors caused erratic behavior.
-- **Breadboard Fragility**: Loose connections added complexity in debugging.
+We initially changed our button configuration from pullup to pulldown resistors, but phantom values still appeared. Eventually, we isolated the servo, uLCD, TextLCD, and ultrasonic sensor by powering them through the barrel jack adapter (VIN), which significantly improved stability.
 
-These were mitigated by adding proper pull-down resistors, isolating high-draw components to VIN, and verifying stable ground connections.
+Another challenge was signal interference caused by the buzzer. When configured with PWM, it conflicted with the servo's signal, preventing it from moving. Switching the buzzer to use DigitalOut resolved the interference and restored proper servo function.
 
 ---
 
@@ -70,13 +67,11 @@ These were mitigated by adding proper pull-down resistors, isolating high-draw c
 If given more time and resources, we would:
 
 - Replace the potentiometer with a **card reader** or **fingerprint scanner**
-- Design a **3D-printed enclosure** for a more professional look
+- Upgrade the cardboard prototype to a **3D-printed enclosure**
 - Move from breadboard to a **custom PCB**
-- Add **remote access** via Wi-Fi/Bluetooth (for mobile alerts and controls)
+- Add **remote access** via Wi-Fi/Bluetooth for mobile alerts and control
 
 ---
 
 ## 📸 Schematic
-
-![THe Schematic of the Alarm System](images/DrawnSchematic4180.png)
-
+![System Schematic](images/DrawnSchemaic4180.png)
