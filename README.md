@@ -1,16 +1,81 @@
-# 4180Final_Project
-Zoe &amp; Sarita 
+# SnZ Home Security System
 
-Sartia Botero
-Zoe Turner
+The **SnZ Home Security System** is a two-factor authentication-based embedded system designed to secure a home using both button input and analog verification. The system features real-time status updates, an automatic door mechanism, and a live people counter — all coordinated through the Mbed LPC1768 microcontroller.
 
-The SnZ Home Security System is a two-factor authentication-based alarm system designed to enhance home security using embedded systems. The system combines button-based input and a potentiometer reading to verify identity. If a user fails to input the correct passcode three times in a row, an “Intruder!!” message is displayed on the uLCD, a buzzer sounds, and red LEDs flash. When the correct sequence is entered, a servo motor automatically opens and closes the door. Inside, an ultrasonic sensor detects when someone exits, updating a live occupancy counter shown on a TextLCD display.
+---
 
-The key components include the uLCD-4DGL, Servo SG90, HC-SR04 ultrasonic sensor, TextLCD, Mbed LPC1768, four pushbuttons, two potentiometers, a buzzer, and indicator LEDs. The uLCD provides visual feedback on passcode input and alarm status. The servo motor opens and closes the door after successful authentication and when the ultrasonic sensor is triggered. The ultrasonic sensor tracks people exiting the house, decreasing the internal count displayed on the TextLCD. The push buttons allow users to input numbers, delete entries, and submit the full passcode, while the potentiometer serves as the second authentication factor, requiring a specific value to be inputted before verification. The Mbed LPC1768 microcontroller handles all of the logic and I/O operations. Components requiring more power, such as the uLCD, sensor, and servo, are powered via a barrel jack adapter connected to VIN (5V), while buttons, LEDs, the buzzer, and potentiometers are connected to VOUT (3.3V).
+## 🛠️ What It Does
 
-One of the biggest challenges we faced was power stability and signal interference. At various stages, the uLCD would display numbers without any buttons being pressed, and button inputs wouldn’t register properly. These issues stemmed from voltage fluctuations caused by high-draw components like the servo. We initially changed our buttons from pullup to a pulldown. But, it was still showing the phantom numbers. So we decided to have the servo, uLCD, TextLCD, and HC-SR04 to be powered from the barrel jack. This instantly solved the power stability. For the signal interference, we initially had the buzzer set to PWM and not DigitalIN. The PWM caused signal interference with our servo, causing it not to move after the buzzer was triggered. We later changed the Buzzer to a DigitalIN instead of PWM, and it fixed the problem.
-Our system shares features with other alarm systems, such as passcode verification, alarms for incorrect entries, and status displays. What sets our project apart is the two-factor authentication, where access requires both button input and analog verification from a potentiometer. The addition of an automatic door mechanism and people counter offers functionality not typically seen in basic home alarm setups.
+- **Two-Factor Authentication** using buttons and a potentiometer
+- **Alarm System** activates after three failed attempts:
+  - Displays “Intruder!!” on the uLCD
+  - Sounds a buzzer
+  - Flashes red LEDs
+- **Automatic Door Opening**:
+  - Triggered after correct authentication
+  - Opens via a Servo SG90 for 10 seconds
+- **Occupancy Counter**:
+  - Uses an ultrasonic sensor to detect exit events
+  - Displays live count on a TextLCD screen
 
-Given more time and resources, we would replace the potentiometer with a card reader or fingerprint scanner for enhanced security. The current cardboard prototype would be upgraded to a 3D-printed prototype, and a custom PCB would replace the breadboard layout. For extended functionality, we would add remote access features via Wi-Fi, enabling monitoring or even door control.
+---
 
-The SnZ Home Security System offers a demonstration of how embedded systems can provide secure, responsive, and interactive solutions to real-world challenges. Despite hardware limitations, the project effectively integrates user authentication, visual and audio feedback, and occupancy tracking into a soft time reliable system.
+## 🔧 Components & Their Purpose
+
+| Component          | Role in System |
+|--------------------|----------------|
+| `uLCD-4DGL`         | Displays passcode input, system status, and intruder warnings |
+| `Servo SG90`        | Physically opens/closes the door |
+| `HC-SR04 Sensor`    | Detects people exiting the home |
+| `TextLCD`           | Shows the current people count |
+| `Mbed LPC1768`      | Central controller for all system logic |
+| `4x Pushbuttons`    | Input passcode (1, 2), delete, and enter |
+| `2x Potentiometers` | Used for analog input (part of 2FA) |
+| `Buzzer`            | Alerts on intruder detection |
+| `Red & Yellow LEDs` | Show passcode status (fail/success) |
+| `Barrel Jack Adapter` | Supplies 5V to power high-current components |
+
+- **VIN (5V)** powers: uLCD, TextLCD, Servo, Sensor  
+- **VOUT (3.3V)** powers: buttons, potentiometers, LEDs, and buzzer
+
+---
+
+## ⚠️ Challenges Faced
+
+Power management and input signal stability were major issues:
+
+- **Floating Inputs**: Initially caused the uLCD to display numbers without button presses.
+- **Button Issues**: Inputs sometimes failed due to weak or missing pull-down resistors.
+- **Voltage Drops**: Shared power between components like the servo and sensors caused erratic behavior.
+- **Breadboard Fragility**: Loose connections added complexity in debugging.
+
+These were mitigated by adding proper pull-down resistors, isolating high-draw components to VIN, and verifying stable ground connections.
+
+---
+
+## 🔍 Comparison to Real-World Systems
+
+| Feature                  | SnZ System | Traditional Systems |
+|--------------------------|------------|---------------------|
+| Passcode Input           | ✅          | ✅                  |
+| Two-Factor Authentication| ✅          | ❌                  |
+| Auto Door Mechanism      | ✅          | ❌                  |
+| Occupancy Counter        | ✅          | ❌                  |
+| Visual + Audio Feedback  | ✅          | ✅                  |
+
+---
+
+## 🚀 Future Improvements
+
+If given more time and resources, we would:
+
+- Replace the potentiometer with a **card reader** or **fingerprint scanner**
+- Design a **3D-printed enclosure** for a more professional look
+- Move from breadboard to a **custom PCB**
+- Add **remote access** via Wi-Fi/Bluetooth (for mobile alerts and controls)
+
+---
+
+## 📸 Schematic
+
+> _Insert photos or GIFs of your working system here_
