@@ -74,4 +74,5 @@ If given more time and resources, we would:
 ---
 
 ## 📸 Schematic
-![System Schematic](images/DrawnSchemaic4180.png)
+![System Schematic](images/DrawnSchematic4180.png)
+
