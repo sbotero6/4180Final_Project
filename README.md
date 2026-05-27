@@ -76,3 +76,9 @@ If given more time and resources, we would:
 ## 📸 Schematic
 ![System Schematic](images/DrawnSchematic4180.png)
 
+## 📸 The System
+![The project](images/IMG_8878.jpeg)
+
+## 📸 The Creators
+![Sarita and Zoe](images/IMG_8879.jpeg)
+
